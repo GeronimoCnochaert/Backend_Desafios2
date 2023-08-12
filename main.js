@@ -9,6 +9,7 @@ class ProductManager {
     
     async getProducts() {
         const prods = JSON.parse(await fs.readFile(path, 'utf-8'))
+        return prods
 
     }
 
@@ -46,7 +47,7 @@ class ProductManager {
             prods[indice].price = product.price
             prods[indice].thumbnail = product.thumbnail
             prods[indice].stock = product.stock
-            prods[indice].id = product.id
+            
 
             await fs.writeFile(path, JSON.stringify(prods))
         } else { console.log('Producto sin encontrar') }
