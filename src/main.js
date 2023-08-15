@@ -5,11 +5,11 @@ const PORT = 4000;
 
 const app = express()
 
-const prods = [
-    { id: 1, nombre: "Iphone", limite: "Celular" },
-    { id: 2, nombre: "Notebook", limite: "Computacion" },
-    { id: 3, nombre: "IPAD", limite: "Computacion" }
-]
+// const prods = [
+//     { id: 1, nombre: "Iphone", limite: "Celular" },
+//     { id: 2, nombre: "Notebook", limite: "Computacion" },
+//     { id: 3, nombre: "IPAD", limite: "Computacion" }
+// ]
 
 
 
