@@ -1,12 +1,48 @@
 import { promises as fs } from 'fs'
+import express from 'express'
+
+const PORT = 4000;
+
+const app = express()
+
+const prods = [
+    { id: 1, nombre: "Iphone", limite: "Celular" },
+    { id: 2, nombre: "Notebook", limite: "Computacion" },
+    { id: 3, nombre: "IPAD", limite: "Computacion" }
+]
+
+
+
+app.get('/products', (req, res) => {
+    const { limite } = req.query
+    if (limite) {
+        const products = prods.slice(prod => prod.limite === limite)
+        res.send(products)
+    } res.send(prods)
+})
+
+app.get('/products/:id', (req, res) => {
+    const prod = prod.filter(prod => prod.id === parseInt(req.params.id))
+    if (prod)
+        res.send(prod)
+    else res.send("Producto no existente")
+
+
+})
+
+
+app.listen(PORT, () => {
+    console.log(`Server on port ${PORT}`)
+
+})
 
 const path = './products.json'
 
 class ProductManager {
     constructor() {
-        
+
     }
-    
+
     async getProducts() {
         const prods = JSON.parse(await fs.readFile(path, 'utf-8'))
         return prods
@@ -47,7 +83,7 @@ class ProductManager {
             prods[indice].price = product.price
             prods[indice].thumbnail = product.thumbnail
             prods[indice].stock = product.stock
-            
+
 
             await fs.writeFile(path, JSON.stringify(prods))
         } else { console.log('Producto sin encontrar') }
@@ -62,7 +98,7 @@ class ProductManager {
         } else { console.log('Producto sin encontrar') }
     }
 
-    
+
 }
 
 class Product {
