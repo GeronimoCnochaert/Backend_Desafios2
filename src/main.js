@@ -5,13 +5,15 @@ const PORT = 4000;
 
 const app = express()
 
-// const prods = [
-//     { id: 1, nombre: "Iphone", limite: "Celular" },
-//     { id: 2, nombre: "Notebook", limite: "Computacion" },
-//     { id: 3, nombre: "IPAD", limite: "Computacion" }
-// ]
+const prods = [
+    { id: 1, nombre: "Iphone", limite: "Celular" },
+    { id: 2, nombre: "Notebook", limite: "Computacion" },
+    { id: 3, nombre: "IPAD", limite: "Computacion" }
+]
 
-
+app.get("/", (request, response) => {
+    response.send(`Server on port ${PORT}`)
+})
 
 app.get('/products', (req, res) => {
     const { limite } = req.query
@@ -26,7 +28,6 @@ app.get('/products/:id', (req, res) => {
     if (prod)
         res.send(prod)
     else res.send("Producto no existente")
-
 
 })
 
@@ -134,4 +135,4 @@ productManager.addProduct(product3)
 
 productManager.getProducts()
 
-productManager.getProductsById(1)
+productManager.getProductsById(2)
